@@ -1,147 +1,72 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>C.S.P RAÍZ</title>
-
-<style>
-body { margin:0; font-family: Arial; background:#f5f5f5; }
-
-header {
-    background:#1e3d2f;
-    color:white;
-    padding:20px;
-    text-align:center;
-}
-
-.container {
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
-    gap:20px;
-    padding:20px;
-}
-
-.card {
-    background:white;
-    border-radius:10px;
-    overflow:hidden;
-}
-
-.card img {
-    width:100%;
-    height:200px;
-    object-fit:cover;
-}
-
-.card-content { padding:15px; }
-
-button {
-    background:#1e3d2f;
-    color:white;
-    border:none;
-    padding:10px;
-    width:100%;
-}
-
-/* MODAL ARREGLADO */
-.modal {
-    display:none;
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.7);
-    top:0;
-    left:0;
-    overflow-y:auto;
-}
-
-.modal-content {
-    background:white;
-    margin:5% auto;
-    padding:20px;
-    width:90%;
-    max-width:600px;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-<h1>C.S.P RAÍZ</h1>
-</header>
-
-<div class="container" id="propiedades"></div>
-
-<div class="modal" id="modal">
-<div class="modal-content" id="modalContent"></div>
-</div>
-
-<script>
-
-let propiedades = [];
-
-// 🔹 CARGAR DESDE MYSQL
-async function cargar(){
-    const res = await fetch("http://localhost:3000/propiedades");
-    propiedades = await res.json();
-    mostrar();
-}
-
-// 🔹 MOSTRAR
-function mostrar(){
-    const cont = document.getElementById("propiedades");
-    cont.innerHTML = "";
-
-    propiedades.forEach((p,i)=>{
-        cont.innerHTML += `
-        <div class="card">
-            <img src="${p.fotos[0]}">
-            <div class="card-content">
-                <h3>${p.tipo} en ${p.ciudad}</h3>
-                <p>${p.precio}</p>
-                <button onclick="verDetalle(${i})">Ver</button>
-            </div>
-        </div>
-        `;
-    });
-}
-
-// 🔹 DETALLE
-function verDetalle(i){
-    const p = propiedades[i];
-
-    let galeria="";
-    p.fotos.forEach(f=>{
-        galeria += `<img src="${f}" style="width:100%; margin-top:10px;">`;
-    });
-
-    document.getElementById("modal").style.display="block";
-    document.body.style.overflow="hidden";
-
-    document.getElementById("modalContent").innerHTML=`
-        <h2>${p.tipo} en ${p.ciudad}</h2>
-        <p>${p.precio}</p>
-        <p>${p.habitaciones} hab | ${p.baños} baños</p>
-        <p>${p.descripcion}</p>
-        ${galeria}
-        <a href="https://wa.me/573001234567">
-            <button>WhatsApp</button>
-        </a>
-    `;
-}
-
-// 🔹 CERRAR
-window.onclick = e=>{
-    if(e.target.id==="modal"){
-        document.getElementById("modal").style.display="none";
-        document.body.style.overflow="auto";
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Willy BBQ & Alitas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
     }
-}
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #222;
+    }
+    h2 {
+      margin-top: 20px;
+      color: #444;
+    }
+    p {
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy – Willy BBQ & Alitas</h1>
 
-cargar();
+    <h2>1. Introduction</h2>
+    <p>At Willy BBQ & Alitas, we are committed to protecting the privacy of our customers. This Privacy Policy explains how we collect, use, and safeguard your personal information.</p>
 
-</script>
+    <h2>2. Information We Collect</h2>
+    <p>We may collect personal information such as your name, phone number, address, and order details when you contact us through WhatsApp or other channels.</p>
 
+    <h2>3. How We Use Your Information</h2>
+    <p>We use your information to process orders, communicate with you, improve our services, and send promotions if you consent.</p>
+
+    <h2>4. Data Sharing</h2>
+    <p>We do not sell or share your personal information with third parties, except when required to fulfill orders or comply with legal obligations.</p>
+
+    <h2>5. Data Security</h2>
+    <p>We implement appropriate security measures to protect your personal data.</p>
+
+    <h2>6. Your Rights</h2>
+    <p>You may request access, correction, or deletion of your personal data at any time.</p>
+
+    <h2>7. Use of WhatsApp</h2>
+    <p>By contacting us via WhatsApp, you agree to the processing of your data in accordance with this policy.</p>
+
+    <h2>8. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy at any time.</p>
+
+    <h2>9. Contact Information</h2>
+    <p>
+      Business Name: Willy BBQ & Alitas<br>
+      Email: your-email@example.com<br>
+      Phone: +57 322 536 1722
+    </p>
+  </div>
 </body>
 </html>
